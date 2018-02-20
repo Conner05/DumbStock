@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="DumbStock.RR.StrategiesPage" 
+    Title="{Binding Title}" x:Name="BrowseStrategiesPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Clicked="AddStrategy_Clicked" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView BackgroundColor="#2f2f30" x:Name="StrategiesListView" ItemsSource="{Binding Strategies}" VerticalOptions="FillAndExpand" HasUnevenRows="true" RefreshCommand="{Binding LoadStrategiesCommand}" IsPullToRefreshEnabled="true" IsRefreshing="{Binding IsBusy, Mode=OneWay}" CachingStrategy="RecycleElement" ItemSelected="OnStrategySelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="20" />
+                                        <RowDefinition Height="15" />
+                                        <RowDefinition Height="20" />
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100" />
+                                        <ColumnDefinition Width="150" />
+                                        <ColumnDefinition Width="100" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{Binding RiskPct, Converter={StaticResource pctConverter}}" XAlign="Center" Grid.Row="0" Grid.Column="0" TextColor="Red" />
+                                    <Label Text="{Binding Ticker}" XAlign="Center" FontSize="Large" Grid.Row="0" Grid.Column="1" TextColor="White" />
+                                    <Label Text="{Binding RewardPct, Converter={StaticResource pctConverter}}" XAlign="Center" Grid.Row="0" Grid.Column="2" TextColor="Green" />
+
+                                    <Label Text="{Binding NetLoss}" XAlign="Center" Grid.Row="1" Grid.Column="0" TextColor="Red" />
+                                    <Label Text="{Binding Buy}" XAlign="Center" Grid.Row="1" Grid.Column="1" TextColor="White" />
+                                    <Label Text="{Binding NetProfit}" XAlign="Center" Grid.Row="1" Grid.Column="2" TextColor="Green" />
+
+                                    <Label Text="{Binding LossOnCapital}" XAlign="Center" Grid.Row="2" Grid.Column="0" TextColor="White" />
+                                    <Label Text="{Binding StrCost}" XAlign="Center" FontSize="Large" Grid.Row="2" Grid.Column="1" TextColor="White" />
+                                    <Label Text="{Binding ProfitOnCapital}" XAlign="Center" Grid.Row="2" Grid.Column="2" TextColor="White" />
+                                </Grid>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

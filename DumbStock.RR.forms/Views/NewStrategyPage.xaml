@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="DumbStock.RR.NewStrategyPage">
+	<ContentPage.Content>
+        <StackLayout Spacing="20" Padding="15" BackgroundColor="#2f2f30">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="110" />
+                    <ColumnDefinition Width="110" />
+                    <ColumnDefinition Width="110" />
+                </Grid.ColumnDefinitions>
+                <Entry Text="{Binding StrategyViewModel.Strategy.Ticker}" FontSize="Large" Grid.Row="0" Grid.Column="0" 
+                    Placeholder="Ticker" BackgroundColor="#2f2f30" TextColor="White" />
+                <Entry Text="{Binding Price}" x:Name="Price" FontSize="Large" Grid.Row="0" Grid.Column="1" TextChanged="Price_TextChanged"
+                    Placeholder="Price" BackgroundColor="#2f2f30" TextColor="White" Keyboard="Numeric"/>
+                <Entry Text="{Binding Shares}" x:Name="Shares" FontSize="Large" Grid.Row="0" Grid.Column="2" TextChanged="Shares_TextChanged"
+                    Placeholder="Shares" BackgroundColor="#2f2f30" TextColor="White" Keyboard="Numeric"/>
+                
+                <Label Text="Risk" FontSize="Large" TextColor="White" HorizontalOptions="Center" Grid.Row="1" Grid.Column="0" />
+                <Label BindingContext="{x:Reference riskSlider}" TextColor="Red"
+                        Text="{Binding Value, StringFormat='{0:F0}%'}" FontSize="Large" 
+                        HorizontalOptions="Center" Grid.Row="1" Grid.Column="2" />
+                <Slider x:Name="riskSlider" Maximum="50" VerticalOptions="CenterAndExpand"
+                    Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Value="{Binding StrategyViewModel.Strategy.RiskPct}" />
+
+                <Label Text="Reward" FontSize="Large" TextColor="White" HorizontalOptions="Center" Grid.Row="3" Grid.Column="0" />
+                <Label BindingContext="{x:Reference rewardSlider}" TextColor="Green"
+                        Text="{Binding Value, StringFormat='{0:F0}%'}" FontSize="Large" 
+                        HorizontalOptions="Center" Grid.Row="3" Grid.Column="2" />
+                <Slider x:Name="rewardSlider" Maximum="50" VerticalOptions="CenterAndExpand" 
+                    Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Value="{Binding StrategyViewModel.Strategy.RewardPct}" />
+            </Grid>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="200" />
+                </Grid.ColumnDefinitions>
+                <Label Text="Cost" FontSize="Large" TextColor="White" HorizontalOptions="Center" Grid.Row="0" Grid.Column="0" />
+                <Label Text="{Binding StrategyViewModel.Strategy.Cost}" FontSize="Large" TextColor="White" HorizontalOptions="Center" Grid.Row="0" Grid.Column="1" />
+
+                <Label Text="Net Loss" FontSize="Large" TextColor="White" HorizontalOptions="Center" Grid.Row="1" Grid.Column="0" />
+                <Label Text="{Binding StrategyViewModel.Strategy.NetLoss}" FontSize="Large" TextColor="White" HorizontalOptions="Center" Grid.Row="1" Grid.Column="1" />
+
+                <Label Text="Capital Loss" FontSize="Large" TextColor="White" HorizontalOptions="Center" Grid.Row="2" Grid.Column="0" />
+                <Label Text="{Binding StrategyViewModel.Strategy.LossOnCapital}" FontSize="Large" TextColor="White" HorizontalOptions="Center" Grid.Row="2" Grid.Column="1" />
+
+                <Label Text="Net Profit" FontSize="Large" TextColor="White" HorizontalOptions="Center" Grid.Row="3" Grid.Column="0" />
+                <Label Text="{Binding StrategyViewModel.Strategy.NetProfit}" FontSize="Large" TextColor="White" HorizontalOptions="Center" Grid.Row="3" Grid.Column="1" />
+
+                <Label Text="Capital Profit" FontSize="Large" TextColor="White" HorizontalOptions="Center" Grid.Row="4" Grid.Column="0" />
+                <Label Text="{Binding StrategyViewModel.Strategy.ProfitOnCapital}" FontSize="Large" TextColor="White" HorizontalOptions="Center" Grid.Row="4" Grid.Column="1" />
+            </Grid>
+        </StackLayout>
+	</ContentPage.Content>
+</ContentPage>
